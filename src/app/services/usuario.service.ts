@@ -15,11 +15,21 @@ export class UsuarioService {
     private http: HttpClient
   ) {}
 
-  getUsers() {
+  // Traer todos los usuarios
   // necesito retornarlo porque necesito hacer algo con el en otras páginas
-   return  this.http.get(`${this.url}/users?per_page=6`)
-                    .pipe(
-                      map( resp=> resp['data'])
-                    )
+    getUsers() {
+      return this.http.get(`${this.url}/users?per_page=6&delay=3`)
+        .pipe(
+          map(resp => resp['data'])
+        );
+    }
+
+  // Traer un unico usuario
+  getUserById(id: string) {
+    return this.http.get(`${this.url}/users/${id}`)
+      .pipe(
+        map(resp => resp['data'])
+      );
   }
+
 }
